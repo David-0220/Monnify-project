@@ -1,0 +1,80 @@
+<html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Try readjust</title>
+        <style>
+            .grid-box{
+                display: grid;
+                grid-template-columns: auto auto auto  ;
+                gap: 5px;
+                background-color: rgb(42, 104, 165);
+                width: auto;
+                height: auto;
+                padding: 10px;
+            }
+            .grid-box > div{
+                background-color: rgb(145, 171, 212);
+                padding: 15px  ;
+                height: auto;
+                width: 100px;
+            }
+            .list{
+                display:
+            
+            }
+            img{
+                height: 100;
+            }   
+            
+        </style>
+    </head>
+    <body>
+          <h1>Welcome to Jumbo</h1>
+        <div class="grid-box">
+            <div class="product1">  <button  onclick="payWithMonnify('Flower',100)"><img src="p6.png"  alt="" > Flower</button></div>
+            <div class="product2">  <button onclick="payWithMonnify('Ring',800)"><img src="p1.png"  alt=""> Ring</button></div>
+            <div class="product3">  <button  onclick="payWithMonnify('Watch',700)"><img src="p2.png"  alt="">Watch</button></div>
+            <div class="product4">  <button onclick="payWithMonnify('Teddy',400)"><img src="p3.png"  alt="">Teddy</button></div>
+            <div class="product5">  <button onclick="payWithMonnify('Time',900)"> <img src="p7.png"  alt="">Time</button></div>
+            <div class="product6">  <button onclick="payWithMonnify('Bear',500)"><img src="p5.png"  alt="">Bear</button></div>
+        </div>
+       
+    </body>
+    <script type="text/javascript" src="https://sdk.monnify.com/plugin/monnify.js"></script>
+    <script>
+        function payWithMonnify(productName="Shop Product", amount= 1000) {
+            MonnifySDK.initialize({
+                amount: amount,
+                currency: "NGN",
+                reference: new String((new Date()).getTime()),
+                customerFullName: productName,
+                customerEmail: "ibiyemiajao12@gmail.com",
+                apiKey: "MK_TEST_6WX5B4ZCDA",
+                contractCode: "4383600196",
+                paymentDescription: productName,
+                metadata: {
+                    "name": "David",
+                    "age": 45
+                },
+               
+                onLoadStart: () => {
+                    console.log("loading has started");
+                },
+                onLoadComplete: () => {
+                    console.log("SDK is UP");
+                },
+                onComplete: function(response) {
+                    //Implement what happens when the transaction is completed.
+                    console.log(response);
+                },
+                onClose: function(data) {
+                    //Implement what should happen when the modal is closed here
+                    console.log(data);
+                }
+            });
+        }
+    </script>
+    </html>
